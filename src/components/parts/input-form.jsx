@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { AiOutlineDoubleRight } from "react-icons/ai";
+import { FcCheckmark } from "react-icons/fc";
 
 export default function InputForm() {
   const [login, setLogin] = useState("");
   const [amount, setAmount] = useState("");
-  const [isActive, setIsActive] = useState(0);
+  const [isActive, setIsActive] = useState(false);
 
   const handleLoginChange = (val) => {
     setLogin(val.target.value);
@@ -16,6 +17,23 @@ export default function InputForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  };
+
+  const handleRadioClick100 = () => {
+    setAmount("100");
+  };
+  const handleRadioClick200 = () => {
+    setAmount("200");
+  };
+  const handleRadioClick500 = () => {
+    setAmount("500");
+  };
+  const handleRadioClick1000 = () => {
+    setAmount("1000");
+  };
+
+  const handleCheckChange = () => {
+    setIsActive((prev) => !prev);
   };
 
   return (
@@ -44,31 +62,60 @@ export default function InputForm() {
       {/* ШАБЛОНЫ СУММЫ ПОПОЛНЕНИЯ */}
 
       <div className="form-radio">
-        <span className={isActive === 1 ? "active" : ""}>
-          <input id="rad-100" name="fixed-amount" type="radio" value="100" />
+        <span className={amount === "100" ? "active" : ""}>
+          <input
+            name="fixed-amount"
+            type="radio"
+            value="100"
+            onChange={handleRadioClick100}
+          />
           100₽
         </span>
 
-        <span className={isActive === 2 ? "active" : ""}>
-          <input id="rad-200" name="fixed-amount" type="radio" value="200" />
+        <span className={amount === "200" ? "active" : ""}>
+          <input
+            name="fixed-amount"
+            type="radio"
+            value="200"
+            onChange={handleRadioClick200}
+          />
           200₽
         </span>
 
-        <span className={isActive === 3 ? "active" : ""}>
-          <input id="rad-500" name="fixed-amount" type="radio" value="500" />
+        <span className={amount === "500" ? "active" : ""}>
+          <input
+            name="fixed-amount"
+            type="radio"
+            value="500"
+            onChange={handleRadioClick500}
+          />
           500₽
         </span>
 
-        <span className={isActive === 4 ? "active" : ""}>
-          <input id="rad-1000" name="fixed-amount" type="radio" value="1000" />
+        <span className={amount === "1000" ? "active" : ""}>
+          <input
+            name="fixed-amount"
+            type="radio"
+            value="1000"
+            onChange={handleRadioClick1000}
+          />
           1000₽
         </span>
       </div>
 
       {/* ЧЕКБОКС СОГЛАСИЯ */}
 
-      <div className="form-agree">
-        <input id="agree" type="checkbox" name="confirm" />
+      <div className={"form-agree " + (isActive ? "checked" : "")}>
+        {/* <div className={"form-check" + (isActive ? "checked" : "")}> */}
+          <input
+            id="agree"
+            type="checkbox"
+            name="confirm"
+            onChange={handleCheckChange}
+          />
+          {/* <FcCheckmark /> */}
+        {/* </div> */}
+
         <label htmlFor="agree">Я указал логин аккаунта, а не никнейм</label>
       </div>
 
