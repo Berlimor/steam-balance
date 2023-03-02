@@ -1,12 +1,13 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+import moneySum from "./amount.context";
 import { AiOutlineDoubleRight } from "react-icons/ai";
-import { FcCheckmark } from "react-icons/fc";
 
 export default function InputForm() {
   const [login, setLogin] = useState("");
-  const [amount, setAmount] = useState("");
   const [isActive, setIsActive] = useState(false);
+  const { amount, setAmount } = useContext(moneySum)
 
   const handleLoginChange = (val) => {
     setLogin(val.target.value);
@@ -15,21 +16,9 @@ export default function InputForm() {
     setAmount(val.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
 
-  const handleRadioClick100 = () => {
-    setAmount("100");
-  };
-  const handleRadioClick200 = () => {
-    setAmount("200");
-  };
-  const handleRadioClick500 = () => {
-    setAmount("500");
-  };
-  const handleRadioClick1000 = () => {
-    setAmount("1000");
+  const handleRadioClick = e => {
+    setAmount(e.target.value);
   };
 
   const handleCheckChange = () => {
@@ -37,7 +26,8 @@ export default function InputForm() {
   };
 
   return (
-    <form className="form-holder" onSubmit={handleSubmit}>
+    <div className="form-holder">
+
       {/* ЛОГИН И СУММА ПОПОЛНЕНИЯ */}
 
       <input
@@ -52,7 +42,7 @@ export default function InputForm() {
       <input
         type="text"
         name="CUR_AMOUNT"
-        placeholder="500₽"
+        placeholder="Сумма пополнения"
         value={amount}
         onChange={handleAmountChange}
         autoComplete="off"
@@ -67,7 +57,7 @@ export default function InputForm() {
             name="fixed-amount"
             type="radio"
             value="100"
-            onChange={handleRadioClick100}
+            onChange={handleRadioClick}
           />
           100₽
         </span>
@@ -77,7 +67,7 @@ export default function InputForm() {
             name="fixed-amount"
             type="radio"
             value="200"
-            onChange={handleRadioClick200}
+            onChange={handleRadioClick}
           />
           200₽
         </span>
@@ -87,7 +77,7 @@ export default function InputForm() {
             name="fixed-amount"
             type="radio"
             value="500"
-            onChange={handleRadioClick500}
+            onChange={handleRadioClick}
           />
           500₽
         </span>
@@ -97,7 +87,7 @@ export default function InputForm() {
             name="fixed-amount"
             type="radio"
             value="1000"
-            onChange={handleRadioClick1000}
+            onChange={handleRadioClick}
           />
           1000₽
         </span>
@@ -124,6 +114,6 @@ export default function InputForm() {
       <button className="form-button">
         Пополнить баланс <AiOutlineDoubleRight id="form-button-icon" />
       </button>
-    </form>
+    </div>
   );
 }

@@ -2,10 +2,11 @@
 
 :root {
   --main-form-bg-color: #25262e;
-  --hover-form-bg-color: #1f1f24;
-  --active-form-bg-color: #242427;
+  --hover-form-bg-color: #32333d;
+  --active-form-bg-color: #3a3b42;
 
   --placeholder-color: #5e5e63;
+  --list-color: #7a7a7a;
 }
 
 * {
@@ -22,23 +23,34 @@ html {
 
 body {
   height: 100%;
-  max-width: 1000px;
+  width: 100%;
+  max-width: 1500px;
   margin: auto;
 }
 
 h1 {
-  margin-left: 1%;
+  margin-left: 3%;
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  width: 49%;
 }
 
 .main-container {
   display: flex;
-  margin: 0 1%;
+  width: 100%;
+  padding: 0 1%;
+  justify-content: space-around;
 }
 
 .form-holder {
   display: flex;
   flex-direction: column;
-  width: 49%;
+  width: 47%;
 }
 
 .form-input {
@@ -74,11 +86,13 @@ h1 {
 }
 
 .form-radio span {
+  display: flex;
   position: relative;
+  justify-content: center;
   background-color: var(--main-form-bg-color);
   color: var(--placeholder-color);
   width: 25%;
-  padding: 20px 8%;
+  padding: 20px 0;
 
   align-items: center;
 
@@ -112,7 +126,6 @@ h1 {
 .form-agree {
   position: relative;
   margin-top: 20px;
-
 }
 .form-agree input {
   position: absolute;
@@ -122,7 +135,8 @@ h1 {
 .form-agree label {
   display: inline-flex;
   user-select: none;
-
+  align-items: center;
+  cursor: pointer;
 }
 .form-agree label::before {
   content: "";
@@ -136,6 +150,7 @@ h1 {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 50% 50%;
+  cursor: pointer;
 
 }
 .form-agree.checked label::before {
@@ -187,4 +202,88 @@ h1 {
 }
 .form-button:hover::after {
   opacity: 1;
+}
+
+.card-holder {
+  display: grid;
+  grid-gap: 8px;
+  grid-template-rows: 100px;
+  width: 100%;
+  padding: 8px;
+  margin-top: 20px;
+  background-color: var(--main-form-bg-color);
+  border-radius: 12px;
+  grid-template-columns: repeat(auto-fit, calc(25% - 6px));
+}
+
+.card-container {
+  display: flex;
+  position: relative;
+  background-color: var(--hover-form-bg-color);
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 15px;
+  width: 100%;
+
+  transition: .2s;
+}
+.card-container:hover {
+  background-color: var(--active-form-bg-color);
+}
+.card-container::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEDklEQVR4nN2YS08bVxTHWXRZvkbbRaN8hH6CtKuuQuzBA13XBs/4GiQICl2QLGKSDWVeFk4bbBxMIh4ZjKJC1VZNIhwgUkiKPUAlEFQqDcN4gdGt/k4MfsIMXBOUIx3Jmrlz78/nnsc9t6HhY5UmWbzslsW2Fq1zskULGpwi7rklMQfFbz7ckcE7ThJ8GHsuUB7J3+geFASPSta/C3eaPeOh7MAfEXp/MUEfvZmiU5npvOI3nuFdz0S/1ap1mrxG1tyS6McczMG+6ur6hJOE9mYlsEsSN/ciqTh9bCSpbszYUoyNzI9QfIs5YHnMyQTOPUC+8GjktS/Wa0ZfjtmG0mtodClBvdFe06OS5auS//MzwXGK+I1HIWb/rHpwVjC9zKL9s/IBfNUl+b8+Fdw1RXDzWtD66UWcGZhepvdScYo1sJZjy/EqsWJLZ99S3caWA7JpULxi2+ealcBePS2nV7Ektvvaj4HPjoVDZCEg7syx9Tndhobm5JxHIcvHRnezLLb5Yj/sOkkhOsPAQXQjBVWFQwJFjmKRSvRjNLn6hP6y/msNfxyjnBJ4++3drk8rfW9QEJBI6w23ZW3T7H6Wzv39W9UxwbE+ExWn0oIqWUeFqDdcQaz9LH2yNlsxbigVoyiLJXAo5qit9fK9ZBkcJPPfak1fBAuniJcOAV2S0H59IpT90HD6e+0eD1kuWfQeAraGOydx8rgIcLoxQwd+j1BeJROHgLxKjOHF0QsBpxsz9P7CKG0Jd6wU5b+AiTPcRYDTjRn66M0kRco7SjGSkJvKnBwgTzef0w1zMw/gBC69k3H0B6fS09QlC/uOAP/ceEb3D3L5Bbetf6pCJs9ouZqAdrb4r3/TJQsDJFkEycJyNbcYQYIe4qQPV3YyJQDb7y3JynIF/XnhQWmQoPuym2ZglXJLbjGyXHGaadGC40c+KItt6NDsTlAOyRKuaqI+TamrBplmAAeG1nCH2SS1fVlSj9F8ozV0MtnKTpqJzxXr0PwI5dXgauVxSxL9pzlupXcyTCxXUDJ6y+SUQHvlcUvyN3KKuIsmhtViukMdXkrUPrBCOCXg80V7P+CR/4aJu5yGY5smlSyjqT5vwNCslOMV8urEKxFcR6AFRCt4XnCRVJyimp3YdhYE1xEelVjn4Y/RpTHqUR007gXBdQQ+rKclI6k4hSFcsuhqOI3gX2G74ZMsA+exkcz7HLbVseWq+SQ6fu9wr4ntYJFKvo/eMBEQtn3O1gWmEvAhR6FvjaRGHF9gDqVilCT6kITfNsuil9kFZrEggaLioBShdndPhCycPNBDvLsCTub14evJ/DO86x6/baG28hoxUCFqJmHWgmLukkUvjkW8FkxzCjHdg0IOCt/CM7zDmIrC/zHJ/xZ94yANaD6sAAAAAElFTkSuQmCC");
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  opacity: 0;
+  transition: opacity .2s;
+}
+.card-container.active {
+  background-color: var(--active-form-bg-color);
+}
+.card-container.active::before {
+  opacity: 1;
+}
+.card-container input {
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+.card-container img {
+  max-width: 90%;
+  max-height: 75%;
+}
+
+.form-list {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+  color: var(--list-color);
+
+  margin-top: 20px;
+}
+.form-list section {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+.list-line {
+  display: block;
+  flex-grow: 1;
+  height: 1em;
+  border-bottom: dashed 1px var(--list-color);
+}
+.list-sum {
+  color: whitesmoke;
 }
