@@ -92,22 +92,7 @@ export default function InputForm() {
           1000₽
         </span>
       </div>
-
-      {/* ЧЕКБОКС СОГЛАСИЯ */}
-
-      <div className={"form-agree " + (isActive ? "checked" : "")}>
-        {/* <div className={"form-check" + (isActive ? "checked" : "")}> */}
-          <input
-            id="agree"
-            type="checkbox"
-            name="confirm"
-            onChange={handleCheckChange}
-          />
-          {/* <FcCheckmark /> */}
-        {/* </div> */}
-
-        <label htmlFor="agree">Я указал логин аккаунта, а не никнейм</label>
-      </div>
+  
 
       {/* КНОПКА ПОПОЛНЕНИЯ */}
 

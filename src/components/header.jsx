@@ -1,5 +1,5 @@
 import React from "react";
-import icon from "../images/logoWhite.png";
+import icon from "../images/logo.png";
 
 import './header.css'
 
